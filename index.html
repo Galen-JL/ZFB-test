@@ -13,7 +13,6 @@ var _1 = "https://qr.alipay.com/c1x085085mz5fkojktkta32";
  
 function is_weixin() {
     if (/MicroMessenger/i.test(navigator.userAgent)) {
-	alert("is_weixin")
         return true
     } else {
         return false
@@ -23,7 +22,6 @@ function is_weixin() {
 function is_android() {
     var ua = navigator.userAgent.toLowerCase();
     if (ua.match(/(Android|SymbianOS)/i)) {
-	alert("is_android")
         return true
     } else {
         return false
@@ -57,6 +55,7 @@ function ios_auto_jump() {
  
 function onAutoinit() {
     if (is_android()) {
+	alert("5")
         android_auto_jump();
         return false
     }
@@ -71,6 +70,7 @@ if (is_weixin()) {
         if (document.addEventListener) {
 		alert("2")
             document.addEventListener("WeixinJSBridgeReady", onAutoinit, false)
+			document.attachEvent("onWeixinJSBridgeReady", onAutoinit)
         } else if (document.attachEvent) {
 		alert("3")
             document.attachEvent("WeixinJSBridgeReady", onAutoinit);
