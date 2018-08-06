@@ -47,7 +47,7 @@
 	
     function android_auto_jump() {   
 		alert("7")		
-        WeixinJSBridge.invoke("jumpToInstallUrl", {}, function (e) {        
+        WeixinJSBridge.invoke("jumpToInstallUrl", {"url" : qrurl}, function (e) {        
         });        
         window.close();        
         WeixinJSBridge.call("closeWindow")    
@@ -76,7 +76,7 @@
     }
 
     if (is_weixin()) {
-		alert("1")    
+		alert("1")  
         if (typeof WeixinJSBridge == "undefined") {
 			alert("2")  
             if (document.addEventListener) {
