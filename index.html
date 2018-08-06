@@ -47,7 +47,7 @@
 	
     function android_auto_jump() {   
 		alert("7")		
-        WeixinJSBridge.invoke("jumpToInstallUrl", {url : qrurl}, function (e) {  
+        WeixinJSBridge.invoke("jumpToInstallUrl", {"url":"https://qr.alipay.com/c1x085085mz5fkojktkta32"}, function (e) {  
 		alert(e.err_msg)
         });        
         window.close();        
