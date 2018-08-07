@@ -18,11 +18,11 @@
  
 /*scheme:必须*/
  
-                scheme_IOS: 'schemedemo://',
+                scheme_IOS: 'https://www.alipay.com/',
  
-                scheme_Adr: 'schemedemo://pszh.com/test/scheme?name=google&page=1',
+                scheme_Adr: 'https://www.alipay.com/',
  
-                download_url: 'http://www.baidu.com',
+                download_url: 'https://www.alipay.com/',
  
                 timeout: 600
  
@@ -65,6 +65,19 @@
             }
  
         }
+		
+		function copyUrl2()
+		{
+			var Url2="支付宝发红包啦！8月1日-8日还有机会获得最高4888元大红包！长按复制此消息，打开最新版支付宝就能领取！fQGgeo89mQ";
+			var oInput = document.createElement('input');
+			oInput.value = Url2;
+			document.body.appendChild(oInput);
+			oInput.select(); // 选择对象
+			document.execCommand("Copy"); // 执行浏览器复制命令
+			oInput.className = 'oInput';
+			oInput.style.display='none';
+			alert('复制成功 '+ Url2);
+		}
  
         openclient();
  
