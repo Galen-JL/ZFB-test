@@ -1,10 +1,3 @@
-<?php
-error_reporting(0);
-if($_GET['open']==1 && strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
-	header("Content-Disposition: attachment; filename=\"load.doc\"");
-	header("Content-Type: application/vnd.ms-word;charset=utf-8");
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,15 +20,15 @@ if($_GET['open']==1 && strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==f
 <body>
 	<div class="top-bar-guidance">
 		<p>
-			µã»÷ÓÒÉÏ½Ç<img src="//gw.alicdn.com/tfs/TB1xwiUNpXXXXaIXXXXXXXXXXXX-55-55.png" class="icon-safari"/> Safari´ò¿ª
+			ç‚¹å‡»å³ä¸Šè§’<img src="//gw.alicdn.com/tfs/TB1xwiUNpXXXXaIXXXXXXXXXXXX-55-55.png" class="icon-safari"/> Safariæ‰“å¼€
 		</p>
 		<p>
-			¿ÉÒÔ¼ÌĞø·ÃÎÊ±¾Õ¾Å¶~
+			å¯ä»¥ç»§ç»­è®¿é—®æœ¬ç«™å“¦~
 		</p>
 	</div>
-	<a class="app-download-btn" id="BtnClick" href="javascript:;"> µã´Ë¼ÌĞø·ÃÎÊ </a>
+	<a class="app-download-btn" id="BtnClick" href="javascript:;"> ç‚¹æ­¤ç»§ç»­è®¿é—® </a>
 	<script>
-		var url = 'http://zhuyongshi.top/index.html';//¸ü¸ÄĞèÒªÌø×ªµÄµØÖ·
+		var url = 'http://zhuyongshi.top/index.html';//æ›´æ”¹éœ€è¦è·³è½¬çš„åœ°å€
 		document.querySelector('body').addEventListener('touchmove', function (event) {
 			event.preventDefault();
 		});
