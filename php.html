@@ -1,68 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN">
 <head>
 	<meta charset="UTF-8">
-	<title>Welcome</title>
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-	<meta content="yes" name="apple-mobile-web-app-capable"/>
-	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-	<meta name="format-detection" content="telephone=no"/>
-	<meta content="false" name="twcClient" id="twcClient"/>
-	<style>
-	body,html{width:100%;height:100%}
-	*{margin:0;padding:0}
-	body{background-color:#fff}
-	.top-bar-guidance{font-size:15px;color:#fff;height:40%;line-height:1.8;padding-left:20px;padding-top:20px;background:url(//gw.alicdn.com/tfs/TB1eSZaNFXXXXb.XXXXXXXXXXXX-750-234.png) center top/contain no-repeat}
-	.top-bar-guidance .icon-safari{width:25px;height:25px;vertical-align:middle;margin:0 .2em}
-	.app-download-btn{display:block;width:214px;height:40px;line-height:40px;margin:18px auto 0 auto;text-align:center;font-size:18px;color:#2466f4;border-radius:20px;border:.5px #2466f4 solid;text-decoration:none}
-</style>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+    <style type="text/css">
+	 *{margin:0; padding:0;}
+	 a{text-decoration: none;}
+	 img{max-width: 100%; height: auto;}
+	 
+    .download{color: #4D4D4D; padding: 7.2% 6.8% 9.3%;}
+	.download .entry-hd{font-size: 2.4em; font-weight: bold; text-align: center;}
+	.download-btn{padding-top: 9%; text-align: center;}
+	.download-btn .android-btn{ width:auto; margin:0 auto;}
+	
+	.footer-bg{background: #2D2D2D; color: #E4E4E4; padding: 3.4% 2%; text-align: center;}
+	.footer-bg .entry-con{font-size: 1em;}
+	
+	#weixin-tip{display:none; position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} 
+	#weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%; position: relative;}
+	#weixin-tip .close{
+		color: #fff;
+		padding: 5px;
+		font: bold 20px/20px simsun;
+		text-shadow: 0 1px 0 #ddd;
+		position: absolute;
+		top: 0; left: 5%;
+	}
+    </style>
+	<title>齐信管家安卓版app下载</title>
 </head>
-<body>
-	<div class="top-bar-guidance">
-		<p>
-			点击右上角<img src="//gw.alicdn.com/tfs/TB1xwiUNpXXXXaIXXXXXXXXXXXX-55-55.png" class="icon-safari"/> Safari打开
-		</p>
-		<p>
-			可以继续访问本站哦~
-		</p>
+<body class="success">
+	<div class="page-wrap">
+		<div class="download">
+			<h3 class="entry-hd">
+            </h3>
+			<div class="download-btn"><a href="http://www.xx.com/test.apk" class="android-btn" id="J_weixin"><img src="img/android-btn.png" alt="安卓版下载"></a></div>
+		</div>
+		<div class="footer-bg">
+			<p class="entry-con">注：微信用户请在右上角选择“在浏览器中打开”，再选择下载应用</p>
+		</div>
 	</div>
-	<a class="app-download-btn" id="BtnClick" href="javascript:;"> 点此继续访问 </a>
-	<script>
-		var url = 'http://zhuyongshi.top/index.html';//更改需要跳转的地址
-		document.querySelector('body').addEventListener('touchmove', function (event) {
-			event.preventDefault();
-		});
-		window.mobileUtil = (function(win, doc) {
-			var UA = navigator.userAgent,
-			isAndroid = /android|adr/gi.test(UA),
-			isIOS = /iphone|ipod|ipad/gi.test(UA) && !isAndroid,
-			isBlackBerry = /BlackBerry/i.test(UA),
-			isWindowPhone = /IEMobile/i.test(UA),
-			isMobile = isAndroid || isIOS || isBlackBerry || isWindowPhone;
-			return {
-				isAndroid: isAndroid,
-				isIOS: isIOS,
-				isMobile: isMobile,
-				isWeixin: /MicroMessenger/gi.test(UA),
-				isQQ: /QQ/gi.test(UA)
-			};
-		})(window, document);
-		if(mobileUtil.isWeixin){
-			if(mobileUtil.isIOS){
-				url = "https://t.asczwa.com/taobao?backurl=" + encodeURIComponent(url);
-				document.getElementById('BtnClick').href=url;
-			}else if(mobileUtil.isAndroid){
-				url = '?open=1';
-				document.getElementById('BtnClick').href=url;
-				var iframe = document.createElement("iframe");
-				iframe.style.display = "none";
-				iframe.src = url;
-				document.body.appendChild(iframe);
+	<div id="weixin-tip"><p><img src="img/live_weixin.png" alt="微信打开"/><span id="close" title="关闭" class="close">×</span></p></div>
+	<script type="text/javascript">
+	var is_weixin = (function() {
+	    var ua = navigator.userAgent.toLowerCase();
+	    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	})();
+	window.onload = function(){
+		var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+		var btn = document.getElementById('J_weixin');
+		var tip = document.getElementById('weixin-tip');
+		var close = document.getElementById('close');
+		if(is_weixin){
+			btn.onclick = function(e){
+				tip.style.height = winHeight + 'px';
+				tip.style.display = 'block';
+				return false;
 			}
-		}else{
-			document.getElementById('BtnClick').href=url;
-			window.location.replace(url);
+			close.onclick = function(){
+				tip.style.display = 'none';
+			}
 		}
-	//setTimeout('WeixinJSBridge.invoke("closeWindow", {}, function(e) {})', 2000); </script>
+	}
+	</script>
 </body>
 </html>
