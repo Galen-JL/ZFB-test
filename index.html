@@ -1,32 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>function-text</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <!-- 1. Define some markup -->
-    <button class="btn">Copy</button>
-
-    <!-- 2. Include library -->
-    <script src="clipboard.min.js"></script>
-
-    <!-- 3. Instantiate clipboard -->
-    <script>
+ <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <title>h5跳原生</title>
+    </head>
+ 
+    <body>
+	<button class="btn">Copy</button>
+	<script>
     var clipboard = new ClipboardJS('.btn', {
         text: function() {
             return 'to be or not to be';
         }
     });
-
     clipboard.on('success', function(e) {
+		openclient();
         console.log(e);
     });
-
     clipboard.on('error', function(e) {
         console.log(e);
     });
     </script>
-</body>
-</html>
+	</body>
+ 
+<!-- Include library -->
+    <script src="clipboard.min.js"></script>
+    <script>
+        var ua = navigator.userAgent.toLowerCase();
+ 
+        var t;
+ 
+        var config = {
+ 
+/*scheme:必须*/
+ 
+                scheme_IOS: 'https://www.alipay.com/',
+ 
+                scheme_Adr: 'https://www.alipay.com/',
+ 
+                download_url: 'https://www.alipay.com/',
+ 
+                timeout: 600
+ 
+        };
+ 
+        function openclient() {
+ 
+            var startTime = Date.now();
+ 
+            var ifr = document.createElement('iframe');
+ 
+            ifr.src = ua.indexOf('os') > 0 ? config.scheme_IOS : config.scheme_Adr;
+ 
+            ifr.style.display = 'none';
+ 
+            document.body.appendChild(ifr);
+ 
+            var t = setTimeout(function() {
+ 
+                var endTime = Date.now();
+ 
+                if (!startTime || endTime - startTime < config.timeout + 200) {
+ 
+                    window.location = config.download_url;
+ 
+                } else {
+ 
+                }
+ 
+            }, config.timeout);
+ 
+            window.onblur = function() {
+ 
+                clearTimeout(t);
+ 
+            }
+ 
+        };
+ 
+    </script>
+ 
+    </html>
