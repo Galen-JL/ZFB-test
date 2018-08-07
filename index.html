@@ -1,7 +1,7 @@
  <!DOCTYPE html>
     <html lang="en">
     <head>
-    <title>h5跳原生</title>
+    <title>您的红包待领取</title>
     </head>
  
     <body>
@@ -10,10 +10,11 @@
 	<script>
     var clipboard = new ClipboardJS('.btn', {
         text: function() {
-            return 'to be or not to be';
+            return 'fQGgeo89mQ';
         }
     });
     clipboard.on('success', function(e) {
+	    openclient();
         console.log(e);
     });
     clipboard.on('error', function(e) {
