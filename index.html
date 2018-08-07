@@ -6,6 +6,7 @@
  
     <body>
 	<button class="btn">Copy</button>
+	<script src="clipboard.min.js"></script>
 	<script>
     var clipboard = new ClipboardJS('.btn', {
         text: function() {
@@ -23,7 +24,6 @@
 	</body>
  
 <!-- Include library -->
-    <script src="clipboard.min.js"></script>
     <script>
         var ua = navigator.userAgent.toLowerCase();
  
