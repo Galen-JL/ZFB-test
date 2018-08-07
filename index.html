@@ -4,12 +4,11 @@
     <title>h5跳原生</title>
     </head>
  
-    <body></body>
+    <body>
+	<div cols="20" id="biao1">fQGgeo89mQ</div>
+	</body>
  
     <script>
- 
-    (function(){
- 
         var ua = navigator.userAgent.toLowerCase();
  
         var t;
@@ -27,8 +26,6 @@
                 timeout: 600
  
         };
- 
- 
  
         function openclient() {
  
@@ -52,8 +49,6 @@
  
                 } else {
  
- 
- 
                 }
  
             }, config.timeout);
@@ -64,11 +59,11 @@
  
             }
  
-        }
+        };
 		
 		function copyCommand()
 		{
-			var Url2="支付宝发红包啦！8月1日-8日还有机会获得最高4888元大红包！长按复制此消息，打开最新版支付宝就能领取！fQGgeo89mQ";
+			var Url2=document.getElementById("biao1").innerText;
 			var oInput = document.createElement('input');
 			oInput.value = Url2;
 			document.body.appendChild(oInput);
@@ -76,13 +71,12 @@
 			document.execCommand("Copy"); // 执行浏览器复制命令
 			oInput.className = 'oInput';
 			oInput.style.display='none';
-			alert('复制成功 '+ Url2);
+			alert('复制成功');
 		}
  
 		copyCommand();
         openclient();
  
-    })()
     </script>
  
     </html>
