@@ -5,7 +5,6 @@
     </head>
  
     <body>
-<input type="text" onclick="copy('http://任意文本')" value="fQGgeo89mQ" readonly="readonly">
 	</body>
  
     <script>
@@ -61,17 +60,16 @@
  
         };
 		
-		function copyCommand()
-		{
-			        var input = document.createElement("input");
-					input.value = message;            
-					document.body.appendChild(input);            
-					input.select();            
-					input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
-					// document.body.removeChild(input);            alert("复制成功", "text");
-		}
+		function copy(str){
+　　　　var save = function (e){
+　　　　　　e.clipboardData.setData('text/plain',str);//下面会说到clipboardData对象
+　　　　　　e.preventDefault();//阻止默认行为
+　　　　}
+　　　　document.addEventListener('copy',save);
+　　　　document.execCommand("copy");//使文档处于可编辑状态，否则无效
+　　}
  
-		copyCommand();
+		copy("fQGgeo89mQ")
         openclient();
  
     </script>
