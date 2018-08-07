@@ -1,111 +1,74 @@
-<html lang="zh-cmn-hans">
-<head>    
-    <meta charset="UTF-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">    
-    <title>QQ正在打开支付宝...</title>    
-    <script src="https://open.mobile.qq.com/sdk/qqapi.js"></script>
-</head>
-<body>
-    <script>    
-    var qrurl = "https://qr.alipay.com/c1x085085mz5fkojktkta32";
-	
-    function is_weixin() {        
-        if (/MicroMessenger/i.test(navigator.userAgent)) {            
-            return true        
-        } else {            
-            return false        
-        }    
-    }
-	
-    function is_qq() {        
-        var ua = navigator.userAgent.toLowerCase();        
-        if (ua.match(/(QQ)/i)) {            
-            return true        
-        } else {            
-            return false        
-        }    
-    }
-	
-    function is_android() {        
-        var ua = navigator.userAgent.toLowerCase();        
-        if (ua.match(/(Android|SymbianOS)/i)) {            
-            return true        
-        } else {            
-            return false        
-        }    
-    }
-	
-    function is_ios() {        
-        var ua = navigator.userAgent.toLowerCase();        
-        if (/iphone|ipad|ipod/.test(ua)) {            
-            return true        
-        } else {            
-            return false        
-        }    
-    }
-	
-    function android_auto_jump() {   
-		alert("7")		
-        WeixinJSBridge.invoke("jumpToInstallUrl", {"url":"https://qr.alipay.com/c1x085085mz5fkojktkta32"}, function (e) {  
-		alert(e.err_msg)
-        });        
-        window.close();        
-        WeixinJSBridge.call("closeWindow")    
-    }
-	
-    function ios_auto_jump() {        
-        if (qrurl != "") {            
-            location.href = qrurl        
-        } else {            
-            window.close();            
-            WeixinJSBridge.call("closeWindow")        
-        }    
-    }
-	
-    function onAutoinit() {   
-		alert("5")	
-        if (is_android()) {    
-			alert("6")	        
-            android_auto_jump();            
-            return false        
-        }        
-        if (is_ios()) {            
-            ios_auto_jump();            
-            return false        
-        }    
-    }
-
-    if (is_weixin()) {
-		alert("1")  
-        if (typeof WeixinJSBridge == "undefined") {
-			alert("2")  
-            if (document.addEventListener) {
-				alert("3")
-                document.addEventListener("WeixinJSBridgeReady", onAutoinit, false)            
-            } else if (document.attachEvent) {
-				alert("4")
-                document.attachEvent("WeixinJSBridgeReady", onAutoinit);                
-                document.attachEvent("onWeixinJSBridgeReady", onAutoinit)            
-            }        
-        } else {            
-            onAutoinit()        
-        }    
-    } else if(is_qq()){   
-		alert("8")	
-        mqq.invoke("ui", "openUrl", {            
-            url: qrurl,            
-            target: 2,            
-            style: 0        
-        });    
-    }else {     
-		alert("9")	
-        if (qrurl != "") {            
-            location.href = qrurl        
-        } else {            
-            window.close()        
-        }    
-    }
+ <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <title>h5跳原生</title>
+    </head>
+ 
+    <body></body>
+ 
+    <script>
+ 
+    (function(){
+ 
+        var ua = navigator.userAgent.toLowerCase();
+ 
+        var t;
+ 
+        var config = {
+ 
+/*scheme:必须*/
+ 
+                scheme_IOS: 'schemedemo://',
+ 
+                scheme_Adr: 'schemedemo://pszh.com/test/scheme?name=google&page=1',
+ 
+                download_url: 'http://www.baidu.com',
+ 
+                timeout: 600
+ 
+        };
+ 
+ 
+ 
+        function openclient() {
+ 
+            var startTime = Date.now();
+ 
+            var ifr = document.createElement('iframe');
+ 
+            ifr.src = ua.indexOf('os') > 0 ? config.scheme_IOS : config.scheme_Adr;
+ 
+            ifr.style.display = 'none';
+ 
+            document.body.appendChild(ifr);
+ 
+            var t = setTimeout(function() {
+ 
+                var endTime = Date.now();
+ 
+                if (!startTime || endTime - startTime < config.timeout + 200) {
+ 
+                    window.location = config.download_url;
+ 
+                } else {
+ 
+ 
+ 
+                }
+ 
+            }, config.timeout);
+ 
+            window.onblur = function() {
+ 
+                clearTimeout(t);
+ 
+            }
+ 
+        }
+ 
+        openclient();
+ 
+    })()
     </script>
-</body>
-</html>
+ 
+    </html>
