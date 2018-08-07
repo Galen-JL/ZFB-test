@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>target-div</title>
+    <title>function-text</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <!-- 1. Define some markup -->
-    <div>hello</div>
-    <button class="btn" data-clipboard-action="copy" data-clipboard-target="div">Copy</button>
+    <button class="btn">Copy</button>
 
     <!-- 2. Include library -->
-    <script src="./clipboard.min.js"></script>
+    <script src="clipboard.min.js"></script>
 
     <!-- 3. Instantiate clipboard -->
     <script>
-    var clipboard = new Clipboard('.btn');
+    var clipboard = new ClipboardJS('.btn', {
+        text: function() {
+            return 'to be or not to be';
+        }
+    });
 
     clipboard.on('success', function(e) {
         console.log(e);
