@@ -1,77 +1,28 @@
- <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <title>h5跳原生</title>
-    </head>
- 
-    <body>
-	</body>
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>target-div</title>
+</head>
+<body>
+    <!-- 1. Define some markup -->
+    <div>hello</div>
+    <button class="btn" data-clipboard-action="copy" data-clipboard-target="div">Copy</button>
+
+    <!-- 2. Include library -->
+    <script src="../dist/clipboard.min.js"></script>
+
+    <!-- 3. Instantiate clipboard -->
     <script>
-        var ua = navigator.userAgent.toLowerCase();
- 
-        var t;
- 
-        var config = {
- 
-/*scheme:必须*/
- 
-                scheme_IOS: 'https://www.alipay.com/',
- 
-                scheme_Adr: 'https://www.alipay.com/',
- 
-                download_url: 'https://www.alipay.com/',
- 
-                timeout: 600
- 
-        };
- 
-        function openclient() {
- 
-            var startTime = Date.now();
- 
-            var ifr = document.createElement('iframe');
- 
-            ifr.src = ua.indexOf('os') > 0 ? config.scheme_IOS : config.scheme_Adr;
- 
-            ifr.style.display = 'none';
- 
-            document.body.appendChild(ifr);
- 
-            var t = setTimeout(function() {
- 
-                var endTime = Date.now();
- 
-                if (!startTime || endTime - startTime < config.timeout + 200) {
- 
-                    window.location = config.download_url;
- 
-                } else {
- 
-                }
- 
-            }, config.timeout);
- 
-            window.onblur = function() {
- 
-                clearTimeout(t);
- 
-            }
- 
-        };
-		
-		function copy(str){
-　　　　var save = function (e){
-　　　　　　e.clipboardData.setData('text/plain',str);//下面会说到clipboardData对象
-　　　　　　e.preventDefault();//阻止默认行为
-　　　　}
-　　　　document.addEventListener('copy',save);
-　　　　document.execCommand("copy");//使文档处于可编辑状态，否则无效
-　　}
- 
-		copy("fQGgeo89mQ")
-        openclient();
- 
+    var clipboard = new Clipboard('.btn');
+
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
     </script>
- 
-    </html>
+</body>
+</html>
